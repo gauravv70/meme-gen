@@ -1,0 +1,27 @@
+.controller-container{
+    height: 100%;
+    width: 50%;
+}
+
+.controller-wrapper{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controller-content{
+    width: 100%;
+    display: block;
+    margin: 15px;
+}
+
+.input{
+    width: 70%;
+}
+
+.btn{
+    margin: 10px; 
+}
+

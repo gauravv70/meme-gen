@@ -1,0 +1,23 @@
+.home-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-wrapper{
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.home-content{
+    height: 80%;
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.377);
+    border-radius: 20px;
+    display: flex;
+}
