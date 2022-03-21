@@ -29,7 +29,7 @@ class Home extends Component {
   }
 
   render() {
-    const { topText, bottomText, randNum, download } = this.state;
+    const { topText, bottomText, randNum, download, color } = this.state;
     return (
       <div className="home-container">
         <div className="home-wrapper">
@@ -39,6 +39,7 @@ class Home extends Component {
               topText={topText}
               randNum={randNum}
               download={download}
+              color = {color}
             />
             <Controller
               genMeme={(topText, bottomText, randNum) => {

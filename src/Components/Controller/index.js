@@ -21,6 +21,7 @@ class Controller extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.generate = this.generate.bind(this);
     this.changeColor = this.changeColor.bind(this);
+    this.downloadMeme = this.downloadMeme.bind(this);
   }
 
   generate() {
@@ -36,8 +37,14 @@ class Controller extends Component {
     this.setState({ [position]: val });
   }
 
-  clearTexts() {
-    this.setState({ topText: "", bottomText: "" }, () => {
+  clearTop() {
+    this.setState({ topText: ""}, () => {
+      this.updateText();
+    });
+  }
+
+  clearBottom(){
+    this.setState({ bottomText: "" }, () => {
       this.updateText();
     });
   }
@@ -47,19 +54,15 @@ class Controller extends Component {
     this.props.genMeme(topText, bottomText, randNum);
   }
 
-<<<<<<< HEAD
   changeColor(event){
     var color = event.target.value
     this.props.changeColor(color);
   }
 
-
-=======
   downloadMeme(){
     this.props.downloadMeme();
   }
 
->>>>>>> d8477e6188bb09a6f98b9383e30ef43b177060e9
   render() {
     const { topText, bottomText } = this.state;
     return (
@@ -101,17 +104,7 @@ class Controller extends Component {
                 Generate new
               </Button>
             </div>
-            <div className="controller-content">
-              <Button
-                variant="contained"
-                color="warning"
-                className="btn"
-                onClick={() => this.updateText()}
-              >
-                Update Text
-              </Button>
-            </div>
-            <div className="controller-content">
+            <div className="controller-content clear">
               <TextField
                 value={topText}
                 label="Top Text"
@@ -120,10 +113,19 @@ class Controller extends Component {
                 placeholder="Enter top text for the meme"
                 className="input"
                 onChange={(e) => this.handleInput(e)}
-                color="warning"
+                color="success"
+                size="small"
               />
+              <Button
+                variant="contained"
+                color="error"
+                className="btn"
+                onClick={() => this.clearTop()}
+              >
+                Clear
+              </Button>
             </div>
-            <div className="controller-content">
+            <div className="controller-content clear">
               <TextField
                 value={bottomText}
                 label="Bottom Text"
@@ -132,18 +134,26 @@ class Controller extends Component {
                 placeholder="Enter bottom text for the meme"
                 className="input"
                 onChange={(e) => this.handleInput(e)}
-                color="warning"
+                color="success"
+                size="small"
               />
-            </div>
-
-            <div className="controller-content">
               <Button
                 variant="contained"
                 color="error"
                 className="btn"
-                onClick={() => this.clearTexts()}
+                onClick={() => this.clearBottom()}
               >
-                Clear Text
+                Clear
+              </Button>
+            </div>
+            <div className="controller-content">
+              <Button
+                variant="contained"
+                color="warning"
+                className="btn"
+                onClick={() => this.updateText()}
+              >
+                Update Text
               </Button>
             </div>
             <div className="controller-content">

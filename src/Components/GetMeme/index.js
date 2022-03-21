@@ -98,10 +98,11 @@ class GetMeme extends Component {
 
   setColor(newColor){
     this.setState({color: newColor});
+    console.log(newColor);
   }
 
   render() {
-    const { topText, bottomText,color } = this.state;
+    const { topText, bottomText, color } = this.state;
     return (
       <div className="meme-container">
         <div className="meme-wrapper">
@@ -112,8 +113,8 @@ class GetMeme extends Component {
               alt="meme"
               crossOrigin="anonymous"
             ></img>
-            <h2 className={"top-text"} id = "top">{topText}</h2>
-            <h2 className={"bottom-text"} id ="bottom">{bottomText}</h2>
+            <h2 className={`top-text ${color == 1 ? 'white' : 'black'} `} id = "top">{topText}</h2>
+            <h2 className={`bottom-text ${color == 1? 'white' : 'black'}`} id ="bottom">{bottomText}</h2>
           </div>
         </div>
       </div>
