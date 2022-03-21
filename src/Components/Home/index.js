@@ -11,6 +11,7 @@ class Home extends Component {
       bottomText: "",
       randNum: 0,
       download: 0,
+      color: 0
     };
   }
 
@@ -20,6 +21,10 @@ class Home extends Component {
 
   downloadMeme() {
     this.setState({ download: this.state.download + 1 });
+  }
+  
+  changeColor(color){
+    this.setState({color: color })
   }
 
   render() {
@@ -41,6 +46,7 @@ class Home extends Component {
               downloadMeme={() => {
                 this.downloadMeme();
               }}
+              changeColor = {(color) => {this.changeColor(color)}}
             />
           </div>
         </div>

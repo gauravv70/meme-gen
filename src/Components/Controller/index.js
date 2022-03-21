@@ -1,4 +1,12 @@
-import { Button, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+} from "@mui/material";
 import { Component } from "react";
 import "./index.css";
 
@@ -12,6 +20,7 @@ class Controller extends Component {
     };
     this.handleInput = this.handleInput.bind(this);
     this.generate = this.generate.bind(this);
+    this.changeColor = this.changeColor.bind(this);
   }
 
   generate() {
@@ -38,12 +47,43 @@ class Controller extends Component {
     this.props.genMeme(topText, bottomText, randNum);
   }
 
+  changeColor(event){
+    var color = event.target.value
+    this.props.changeColor(color);
+  }
+
+
   render() {
     const { topText, bottomText } = this.state;
     return (
       <div className="controller-container">
         <div className="controller-wrapper">
           <div style={{ width: "100%" }}>
+            <div className="controller-content">
+              <FormControl>
+                <FormLabel id="demo-radio-buttons-group-label">
+                  Text Color
+                </FormLabel>
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  row
+                  defaultValue="0"
+                  name="radio-buttons-group"
+                  onChange={(e)=>{this.changeColor(e)}}
+                >
+                  <FormControlLabel
+                    value="0"
+                    control={<Radio />}
+                    label="Black"
+                  />
+                  <FormControlLabel
+                    value="1"
+                    control={<Radio />}
+                    label="White"
+                  />
+                </RadioGroup>
+              </FormControl>
+            </div>
             <div className="controller-content">
               <Button
                 variant="contained"

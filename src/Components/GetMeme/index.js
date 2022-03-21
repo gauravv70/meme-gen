@@ -12,11 +12,12 @@ class GetMeme extends Component {
       meme: "",
       index: 0,
       download: 0,
+      color: 0
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    const { topText, bottomText, index, download } = this.state;
+    const { topText, bottomText, index, download, color } = this.state;
     if (nextProps.topText && nextProps.topText !== topText) {
       this.setState({ topText: nextProps.topText });
     }
@@ -36,6 +37,9 @@ class GetMeme extends Component {
     }
     if (nextProps.download !== download) {
       this.downloadMeme();
+    }
+    if(nextProps.color !== color){
+      this.setColor(nextProps.color);
     }
   }
 
@@ -92,8 +96,12 @@ class GetMeme extends Component {
     }
   }
 
+  setColor(newColor){
+    this.setState({color: newColor});
+  }
+
   render() {
-    const { topText, bottomText } = this.state;
+    const { topText, bottomText,color } = this.state;
     return (
       <div className="meme-container">
         <div className="meme-wrapper">
@@ -104,8 +112,8 @@ class GetMeme extends Component {
               alt="meme"
               crossOrigin="anonymous"
             ></img>
-            <h1 className="top-text">{topText}</h1>
-            <h1 className="bottom-text">{bottomText}</h1>
+            <h2 className={"top-text"} id = "top">{topText}</h2>
+            <h2 className={"bottom-text"} id ="bottom">{bottomText}</h2>
           </div>
         </div>
       </div>
