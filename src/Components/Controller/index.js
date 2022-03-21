@@ -47,12 +47,19 @@ class Controller extends Component {
     this.props.genMeme(topText, bottomText, randNum);
   }
 
+<<<<<<< HEAD
   changeColor(event){
     var color = event.target.value
     this.props.changeColor(color);
   }
 
 
+=======
+  downloadMeme(){
+    this.props.downloadMeme();
+  }
+
+>>>>>>> d8477e6188bb09a6f98b9383e30ef43b177060e9
   render() {
     const { topText, bottomText } = this.state;
     return (
@@ -143,9 +150,9 @@ class Controller extends Component {
               <Button
                 variant="contained"
                 className="download"
-                onClick={() => {
-                  this.props.downloadMeme();
-                }}
+                onClick={() => 
+                  this.downloadMeme()
+                }
               >
                 Download
               </Button>

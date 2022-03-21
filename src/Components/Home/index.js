@@ -20,7 +20,8 @@ class Home extends Component {
   }
 
   downloadMeme() {
-    this.setState({ download: this.state.download + 1 });
+    var down = this.state.download;
+    this.setState({ download: down+1 });
   }
   
   changeColor(color){
@@ -37,7 +38,7 @@ class Home extends Component {
               bottomText={bottomText}
               topText={topText}
               randNum={randNum}
-              downloadmeme={download}
+              download={download}
             />
             <Controller
               genMeme={(topText, bottomText, randNum) => {
