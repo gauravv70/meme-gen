@@ -18,10 +18,29 @@
 }
 
 .input{
-    width: 70%;
+    width: 60%;
+    margin-right: 15px !important;
 }
 
 .btn{
-    margin: 10px; 
+    margin: 10px;
+}
+
+.clear{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+input[type='radio'] {
+    -webkit-appearance:none;
+}
+
+.radio-white{
+
+}
+
+.radio-black{
+
 }
 
