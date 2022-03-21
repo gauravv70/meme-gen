@@ -1,3 +1,4 @@
+import html2canvas from "html2canvas";
 import { Component } from "react";
 import "./index.css";
 
@@ -10,11 +11,12 @@ class GetMeme extends Component {
       memeArray: [],
       meme: "",
       index: 0,
+      download: 0,
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    const { topText, bottomText, index } = this.state;
+    const { topText, bottomText, index, download } = this.state;
     if (nextProps.topText && nextProps.topText !== topText) {
       this.setState({ topText: nextProps.topText });
     }
@@ -28,7 +30,12 @@ class GetMeme extends Component {
       this.setState({ topText: "Add Text" });
     }
     if (nextProps.randNum !== index) {
-      this.setState({ index: nextProps.randNum }, ()=>{this.getMeme()});
+      this.setState({ index: nextProps.randNum }, () => {
+        this.getMeme();
+      });
+    }
+    if (nextProps.download !== download) {
+      this.downloadMeme();
     }
   }
 
@@ -50,13 +57,53 @@ class GetMeme extends Component {
       });
   }
 
+  downloadMeme() {
+    html2canvas(document.querySelector("#meme"), {
+      letterRendering: 1,
+      allowTaint: true,
+      useCORS: true,
+    })
+      .then((canvas) => {
+        this.saveAs(canvas.toDataURL(), "Meme By Gaurav.png");
+        this.setState({ download: this.props.download });
+      })
+      .catch((err) => {
+        alert(err | "Error in processing image. Please contact Gaurav");
+      });
+  }
+
+  saveAs(uri, filename) {
+    var link = document.createElement("a");
+
+    if (typeof link.download === "string") {
+      link.href = uri;
+      link.download = filename;
+
+      //Firefox requires the link to be in the body
+      document.body.appendChild(link);
+
+      //simulate click
+      link.click();
+
+      //remove the link when done
+      document.body.removeChild(link);
+    } else {
+      window.open(uri);
+    }
+  }
+
   render() {
     const { topText, bottomText } = this.state;
     return (
       <div className="meme-container">
         <div className="meme-wrapper">
-          <div className="meme-content">
-            <img src={this.state.meme} className="meme" alt="meme"></img>
+          <div className="meme-content" id="meme">
+            <img
+              src={this.state.meme}
+              className="meme"
+              alt="meme"
+              crossOrigin="anonymous"
+            ></img>
             <h1 className="top-text">{topText}</h1>
             <h1 className="bottom-text">{bottomText}</h1>
           </div>
