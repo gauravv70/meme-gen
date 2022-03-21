@@ -38,6 +38,10 @@ class Controller extends Component {
     this.props.genMeme(topText, bottomText, randNum);
   }
 
+  downloadMeme(){
+    this.props.downloadMeme();
+  }
+
   render() {
     const { topText, bottomText } = this.state;
     return (
@@ -103,9 +107,9 @@ class Controller extends Component {
               <Button
                 variant="contained"
                 className="download"
-                onClick={() => {
-                  this.props.downloadMeme();
-                }}
+                onClick={() => 
+                  this.downloadMeme()
+                }
               >
                 Download
               </Button>
